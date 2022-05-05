@@ -1,0 +1,43 @@
+<style>
+/*Criando estilos internos de estilo nativo*/
+
+h1 {
+    font-size: 18px;
+    color: rgb(0, 12, 2);
+    font-family: Roboto, Verdana, Tahoma, sans-serif;
+}
+
+
+/*Classe começa com (.)*/
+
+
+/*Criando estilo de classe*/
+
+.cab_especial {
+    font-size: 16px;
+    font-weight: bolder;
+    color: rgb(126, 245, 213);
+}
+
+
+/*Criando estilo para campos*/
+
+.format_campos {
+    background-color: rgb(205, 255, 205);
+    font-size: 12px;
+    font-weight: bolder;
+    color: rgb(0, 0, 0);
+}
+
+
+/*Criando estilo para id*/
+
+#cadastro {
+    color: rgb(255, 255, 255);
+}
+
+body {
+    background-color: teal;
+}
+
+</style>
