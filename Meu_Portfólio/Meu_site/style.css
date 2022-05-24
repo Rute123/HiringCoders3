@@ -1,0 +1,7 @@
+body {
+    background-image: url("imagens/gradiente.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #cccccc;
+    color: white;
+}
