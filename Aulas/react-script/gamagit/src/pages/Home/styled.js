@@ -1,19 +1,31 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
+export const HomeContainer = styled.div`
+ display: flex;
+ flex-direction: column;
+ align-content: center;
+ justify-content: center;
+ height: 100vh;
+`;
 
-export const Container = styled.div`
- width: 100vw;
- heigth: 100vh;
+export const Content = styled.div`
+ width: 100px;
+ margin: 0 auto;
+ max-width: 100%;
  display: flex;
  align-items: center;
  justify-content: center;
+ margin-top: 10%;
 `;
 
 export const Input = styled.input`
  border: 1px solid #ddd;
- heigth: 1.5rem;
- padding: 0 .5rem;
- border-radius: .25rem 0 0 .25rem;
+ heigth: 2rem;
+ border-radius: 1rem 0 0 1rem;
+ color: ${props => props.inputColor || "#d36b00"};
+  background: papayawhip;
+  border: none;
+  padding: 0.8rem;
 
  &:focus,
  &:active {
@@ -23,11 +35,28 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
- heigth: 1.5rem;
- border-radius: .25rem 0 0 .25rem;
- background: #000;
+ heigth: 2rem;
+ padding: 0.8rem;
+ background: #f5a364;
  color: #fff;
- border-radius: 0 .25rem .25rem 0;
+ border-radius: 0 1rem 1rem 0;
+ border: none;
+
+ &:focus,
+ &:active {
+     outline: none;
+     box-shadow: none;
+    }
 `;
+
+export const ErrorMsg = styled.span`
+ display: block;
+ font-size: 0.65rem;
+ color: red;
+ font-weight: 600;
+ maring-top: 1rem;
+`;
+
+
 
 
