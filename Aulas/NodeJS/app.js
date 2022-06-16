@@ -1,8 +1,10 @@
 // Incluir biblioteca
 const http = require('http');
 //faz uma limpeza do dado url
-var url = require('url');
+const url = require('url');
 const queryString = require('query-string');
+//Inclui o file system
+const fs = require('fs');
 
 //Definição de endereço/ URL
 const hostname = '127.0.0.1';
@@ -10,67 +12,56 @@ const port = 3000;
 
 //Implementação da regra de negócio
 const server = http.createServer((req, res) => {
-//Pegar a pergunta na url
-const params = queryString.parse(url.parse(req.url, true).search);
 
-//Verificar a pergunta e escolher a resposta
-let resposta;
-if(params.pergunta == 'melhor-filme'){
-  resposta = 'Piratas do Caribe';
-}
-else if(params.pergunta == 'melhor-tecnologia-backend'){
-  resposta = 'nodejs';
-}
-else{
-  resposta = 'Não sei, desculpe :(';
-}
+  //Criar e Atualiza um usuario - id
+   var resposta;
+   const urlparse = url.parse(req.url, true);
+   const params = queryString.parse(urlparse.search);
 
-// Retornar a resposta escolhida
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end(params.pergunta);
+   if (urlparse.pathname == '/criar-atualizar-usuario'){
+      //Salvar as informações que o usuário der de entrada na pasta users
+      fs.writeFile('users/' + params.id + '.txt', JSON.stringify(params), function (err){ 
+        if (err) throw err;
+        console.log('Saved!');
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end(resposta);
+      });
+      resposta= 'Usuário criado/atualizado com sucesso!';
+   } 
+   // Selecionar usuario
+   else if (urlparse.pathname == '/selecionar-usuario'){
+    fs.readFile('users/' + params.id + '.txt', function(err, data) {
+      resposta = data;
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type',  'application/json');
+      res.end(resposta);
+     });
+   }
+   
+   // Remover o usuario
+   else if (urlparse.pathname == '/remover-usuario'){
+    fs.unlink('users/' + params.id + '.txt', function(err) {
+      console.log('File deleted!');
+      
+      resposta = err ? 'Usuário não encontrado' : 'Usuario removido';
+
+      res.statusCode = 204;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end(resposta);
+   });
+ }
+
 });
-
 
 //Execução
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-
-/* PROVA
-  let foo = function foo2 () { 
-
-    console.log(foo === foo2) 
-   
-   } 
-   
-   foo();
- 
-const obj = { a: 1 } 
-
-obj.a += 3 
-
-console.log(obj.a);
-  
-
-function foo ({ a, b, c }) { 
-
-  console.log(a, b, c) 
- 
- ﻿} 
- 
- let a = 2 
- 
- let b = 4 
- 
- let c = 6 
- 
- foo(2, 1, 3) 
- 
- foo({ c, b, a }) 
- 
- foo({ c: 10, b: c, a })
- */
-
-//http://localhost:3000/?pegunta=melhor-filme
+//Formato queryString
+//http://localhost:3000/criar-atualizar-usuario?nome=rute&idade=80&id=1
+//http://localhost:3000/criar-atualizar-usuario?nome=rute&idade=80&id=1
+//http://localhost:3000/selecionar-usuario?nome=rute&idade=80&id=1
+//http://localhost:3000/remover-usuario?nome=rute&idade=80&id=1
