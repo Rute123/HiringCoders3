@@ -38,8 +38,11 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+//FORMATO querystring
+//http://localhost:3000/?pegunta=melhor-filme
 
-/* PROVA
+/*---------------------
+ PROVA
   let foo = function foo2 () { 
 
     console.log(foo === foo2) 
@@ -57,9 +60,8 @@ console.log(obj.a);
 
 function foo ({ a, b, c }) { 
 
-  console.log(a, b, c) 
- 
- ﻿} 
+  console.log(a, b, c);
+ } 
  
  let a = 2 
  
@@ -72,6 +74,6 @@ function foo ({ a, b, c }) {
  foo({ c, b, a }) 
  
  foo({ c: 10, b: c, a })
- */
 
-//http://localhost:3000/?pegunta=melhor-filme
+ foo();
+ */
