@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
  flex-direction: column;
  align-content: center;
  justify-content: center;
- height: 100vh;
+ height: 80vh;
 `;
 
 export const Content = styled.div`
@@ -54,7 +54,12 @@ export const ErrorMsg = styled.span`
  font-size: 0.65rem;
  color: red;
  font-weight: 600;
- maring-top: 1rem;
+ margin: 0;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ margin-right: -50%;
+ transform: translate(-50%, -50%)
 `;
 
 
